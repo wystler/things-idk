@@ -1,6 +1,24 @@
-const ItemAdder = () => {
+import { useState } from "react"
+
+const ItemAdder = (props) => {
+
+    const {setItems} = props
+    const [newItem, setNewItem] = useState("")
+
+    const handleSubmit = () => {
+
+    }
+
     return (
-        <p>Adder</p>
+        <form onSubmit={handleSubmit}>
+            <label>
+                <input
+                value={newItem}
+                onChange={(event) => setNewItem(event.target.value)}>
+                </input>
+            </label>
+            <button type="submit">Add thing</button>
+        </form>
     )
 }
 

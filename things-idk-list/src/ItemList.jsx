@@ -23,7 +23,7 @@ const ItemList = () => {
 
     return (
         <div>
-            <ItemAdder />
+            <ItemAdder setItems={setItems}/>
 
             <ul className="itemList">
                 {items.map((item) => {

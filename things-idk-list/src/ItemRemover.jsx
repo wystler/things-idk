@@ -1,6 +1,7 @@
 const ItemRemover = (props) => {
 
     const {setItems, id} = props
+    
     return (
         <div>
             <button onClick={() => setItems((currentItems) => {
