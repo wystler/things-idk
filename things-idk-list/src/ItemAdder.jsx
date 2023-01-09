@@ -5,9 +5,11 @@ const ItemAdder = (props) => {
     const {setItems} = props
     const [newItem, setNewItem] = useState("")
 
-    const handleSubmit = () => {
-
-    }
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        setItems((currentItems) => {
+            return [{id:Math.max(...currentItems.map( item => item.id))+1, description:newItem}, ...currentItems]
+        })}
 
     return (
         <form onSubmit={handleSubmit}>
