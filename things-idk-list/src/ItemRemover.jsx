@@ -1,7 +1,11 @@
-const ItemRemover = () => {
+const ItemRemover = (props) => {
+
+    const {setItems, id} = props
     return (
         <div>
-            <p>remover</p>
+            <button onClick={() => setItems((currentItems) => {
+                return [...currentItems].filter( item => item.id !== id)
+            })}>Remove</button>
         </div>
     )
 }

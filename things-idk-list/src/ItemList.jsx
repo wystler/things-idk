@@ -28,9 +28,9 @@ const ItemList = () => {
             <ul className="itemList">
                 {items.map((item) => {
                     return (
-                    <li>
+                    <li key={item.id}>
                         <p>{item.description}</p>
-                        <ItemRemover />
+                        <ItemRemover setItems={setItems} id={item.id}/>
                     </li>)
                 })}
             </ul>
