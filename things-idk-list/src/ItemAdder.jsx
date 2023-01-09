@@ -16,7 +16,7 @@ const ItemAdder = (props) => {
     return (
         <form className="itemAdder"
             onSubmit={handleSubmit}>
-            <label>
+            <label className="itemAdderLabel">
                 Add a new item:
                 <input
                 className="itemAdderBox"
