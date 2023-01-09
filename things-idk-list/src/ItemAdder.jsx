@@ -9,7 +9,7 @@ const ItemAdder = (props) => {
         event.preventDefault()
         if (newItem)
         setItems((currentItems) => {
-            return [{id:Math.max(...currentItems.map( item => item.id > 0 ? item.id : 0))+1, description:newItem}, ...currentItems]
+            return [...currentItems, {id:Math.max(...currentItems.map( item => item.id > 0 ? item.id : 0))+1, description:newItem}]
         })
         setNewItem("")}
 
