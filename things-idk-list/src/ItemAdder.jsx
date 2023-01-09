@@ -14,14 +14,17 @@ const ItemAdder = (props) => {
         setNewItem("")}
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="itemAdder"
+            onSubmit={handleSubmit}>
             <label>
+                Add a new item:
                 <input
+                className="itemAdderBox"
                 value={newItem}
                 onChange={(event) => setNewItem(event.target.value)}>
                 </input>
             </label>
-            <button type="submit">Add thing</button>
+            <button className="itemAdderButton" type="submit">Add thing</button>
         </form>
     )
 }

@@ -1,38 +1,97 @@
-.App {
+* {
+  color:#dddddd;
+  background-color: #333333;
+}
+
+h1 {
   text-align: center;
+  margin:10px;
+  font-size: 30pt;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.removeItemButton {
+  display:flex;
+  background-color: #8dd1ce;
+  margin:10px;
+  margin-right:30px;
+  font-size: 12pt;;
+  color:darkblue;
+  padding:5px;
+  border-radius: 5px;
+  border: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.removeItemButton:hover, .removeItemButton:focus {
+  background-color: red;
+  border-color: darkred;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.item {
+  display:flex;
+  align-items:center;
+  background-color: #777777;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.itemAdder {
+  font-size: 18pt;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  
+}
+
+.itemAdderBox {
+  background-color: #777777;
+  font-size: 15pt;
+  color: black;
+  border: 3px solid #cccccc;
+  border-radius:5px;
+  margin:0px 20px;
+}
+
+.itemAdderBox:focus {
+  background-color:white;
+  outline: none;
+}
+
+.itemAdderButton {
+  width:120px;
+  font-size: 12pt;
+  padding:5px;
+  border-radius: 5px;
+  background-color: #8dd1ce;
+  color: darkblue;
+  border:none;
+}
+
+.itemAdderButton:hover, .adderButton:focus {
+  background-color:green;
+  border-color:darkgreen;
+  color:white;
+}
+
+.itemList {
+  border-radius: 10px;
+  border: 5px solid lightseagreen;
+  display: flex;
+  flex-direction: column;
+  padding:5px;
+  font-size:20px;
+  max-width:650px;
+  margin: 15px auto;
+  overflow:hidden; 
+  overflow-y:scroll;
+  max-height:83vh;
+}
+
+.items {
+  width : 95%;
+  display:inline-flex;
+  justify-content: left;
+  background-color: #777777;
+  border: 3px solid #cccccc;
+  border-radius:5px;
+  margin:10px;
+  
 }

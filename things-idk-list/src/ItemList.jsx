@@ -24,14 +24,15 @@ const ItemList = () => {
     return (
         <div>
             <ItemAdder setItems={setItems}/>
-
             <ul className="itemList">
                 {items.map((item) => {
                     return (
-                    <li key={item.id}>
-                        <p>{item.description}</p>
+                    <div className="items">
+                    <li className="item" key={item.id}>
                         <ItemRemover setItems={setItems} id={item.id}/>
-                    </li>)
+                        {item.description}
+                    </li>
+                    </div>)
                 })}
             </ul>
         </div>
