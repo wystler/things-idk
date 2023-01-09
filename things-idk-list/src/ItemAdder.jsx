@@ -7,6 +7,7 @@ const ItemAdder = (props) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        if (newItem)
         setItems((currentItems) => {
             return [{id:Math.max(...currentItems.map( item => item.id > 0 ? item.id : 0))+1, description:newItem}, ...currentItems]
         })
