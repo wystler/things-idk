@@ -8,7 +8,7 @@ const ItemAdder = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
         setItems((currentItems) => {
-            return [{id:Math.max(...currentItems.map( item => item.id))+1, description:newItem}, ...currentItems]
+            return [{id:Math.max(...currentItems.map( item => item.id > 0 ? item.id : 0))+1, description:newItem}, ...currentItems]
         })
         setNewItem("")}
 
