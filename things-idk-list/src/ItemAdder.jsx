@@ -9,7 +9,8 @@ const ItemAdder = (props) => {
         event.preventDefault()
         setItems((currentItems) => {
             return [{id:Math.max(...currentItems.map( item => item.id))+1, description:newItem}, ...currentItems]
-        })}
+        })
+        setNewItem("")}
 
     return (
         <form onSubmit={handleSubmit}>
