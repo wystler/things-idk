@@ -50,10 +50,10 @@ h1 {
 
 .itemAdderLabel {
   display:flex;
+  align-items: center;
   flex-direction: row;
   flex-wrap:wrap;
   justify-content: center;
-  max-width: 70vw;
 }
 
 .itemAdderBox {
@@ -62,8 +62,8 @@ h1 {
   color: black;
   border: 3px solid #cccccc;
   border-radius:5px;
-  margin:0px 20px;
-  max-width: 60vw;
+  margin:10px 20px;
+  max-width: 70vw;
 }
 
 .itemAdderBox:focus {
@@ -79,7 +79,7 @@ h1 {
   background-color: #8dd1ce;
   color: darkblue;
   border:none;
-  max-width:20vw;
+  max-width:30vw;
 }
 
 .itemAdderButton:hover, .adderButton:focus {
