@@ -1,24 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ItemAdder from "./ItemAdder.jsx"
 import ItemRemover from "./ItemRemover.jsx"
 
 
 const ItemList = () => {
 
-    const [items, setItems] = useState([
-        {
-            id:1,
-            description:"Quantum Chromodynamics"
-        },
-        {
-            id:2,
-            description:"Tuesdays"
-        },
-        {
-            id:3,
-            description:"The Kardashians"
-        }  
-    ])
+    const [items, setItems] = useState (() => {
+
+    const storedItems = localStorage.getItem("items")
+        return JSON.parse(storedItems)
+    })
+
+    useEffect(() => {
+        localStorage.setItem("items", JSON.stringify(items))
+    }, [items])
 
 
     return (
