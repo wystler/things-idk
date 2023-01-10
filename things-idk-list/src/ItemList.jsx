@@ -24,13 +24,13 @@ const ItemList = () => {
 
     const dragEnter = (e, position) => {
         dragOverItem.current = position;
-        if (e.target.id === "listItem")
+        if (e.target.id === "dragItem")
         e.target.className = `items highlight`
         };
 
     const dragLeave = (e, position) => {
         dragOverItem.current = position;
-        if (e.target.id === "listItem")
+        if (e.target.id === "dragItem")
         e.target.className = `items nolight`
         };
 
@@ -51,17 +51,15 @@ const ItemList = () => {
             <ul className="itemList">
                 {items.map((item, index) => {
                     return (
-                    <div className="items" key={item.id} 
-                    draggable id="listItem"
+                    <li className="items" key={item.id} 
+                    draggable id="dragItem"
                     onDragStart={(event) => dragStart(event, index)}
                     onDragEnter={(event) => dragEnter(event, index)}
                     onDragLeave={(event) => dragLeave(event, index)}
                     onDragEnd={drop}>
-                    <li className="item">
                         <ItemRemover setItems={setItems} id={item.id}/>
                         {item.description}
-                    </li>
-                    </div>)
+                    </li>)
                 })}
             </ul>
         </div>
