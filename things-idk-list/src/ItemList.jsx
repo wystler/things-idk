@@ -1,4 +1,5 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import ItemAdder from "./ItemAdder.jsx"
 import ItemRemover from "./ItemRemover.jsx"
 
@@ -15,53 +16,36 @@ const ItemList = () => {
         localStorage.setItem("items", JSON.stringify(items))
     }, [items])
 
-    const dragItem = useRef()
-    const dragOverItem = useRef()
-
-    const dragStart = (e, position) => {
-        dragItem.current = position;
-        };
-
-    const dragEnter = (e, position) => {
-        dragOverItem.current = position;
-        if (e.target.id === "dragItem")
-        e.target.className = `items highlight`
-        };
-
-    const dragLeave = (e, position) => {
-        dragOverItem.current = position;
-        if (e.target.id === "dragItem")
-        e.target.className = `items nolight`
-        };
-
-    const drop = (e) => {
-        const copyListItems = [...items];
-        const dragItemContent = copyListItems[dragItem.current];
-        copyListItems.splice(dragItem.current, 1);
-        copyListItems.splice(dragOverItem.current, 0, dragItemContent);
-        dragItem.current = null;
-        dragOverItem.current = null;
-        setItems(copyListItems);
-    };
-
+    const handleOnDragEnd = (result) => {
+        const oldItems = Array.from(items);
+        const [reorderedItem] = oldItems.splice(result.source.index, 1);
+        oldItems.splice(result.destination.index, 0, reorderedItem);
+        setItems(oldItems)
+    } 
 
     return (
         <div>
             <ItemAdder setItems={setItems}/>
-            <ul className="itemList">
-                {items.map((item, index) => {
-                    return (
-                    <li className="items" key={item.id} 
-                    draggable id="dragItem"
-                    onDragStart={(event) => dragStart(event, index)}
-                    onDragEnter={(event) => dragEnter(event, index)}
-                    onDragLeave={(event) => dragLeave(event, index)}
-                    onDragEnd={drop}>
-                        <ItemRemover setItems={setItems} id={item.id}/>
-                        {item.description}
-                    </li>)
-                })}
-            </ul>
+                <DragDropContext onDragEnd={handleOnDragEnd}>
+                    <Droppable droppableId="itemList">
+                        {(provided) => (
+                        <ul className="itemList" {...provided.droppableProps} ref={provided.innerRef}>
+                            {items.map((item, index) => {
+                                return (
+                                    <Draggable key={item.id} draggableId={item.id} index={index}>
+                                        {(provided) => (
+                                        <li className="items" ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                            <ItemRemover setItems={setItems} id={item.id}/>
+                                            {item.description}
+                                        </li>
+                                )}
+                                </Draggable>)
+                            })}
+                            {provided.placeholder}
+                        </ul>
+                        )}
+                </Droppable>
+            </DragDropContext>
         </div>
     )
 }

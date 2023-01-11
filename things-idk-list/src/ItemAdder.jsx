@@ -11,7 +11,7 @@ const ItemAdder = (props) => {
         ref.current.focus()
         if (newItem)
         setItems((currentItems) => {
-            return [...currentItems, {id:Math.max(...currentItems.map( item => item.id > 0 ? item.id : 0))+1, description:newItem}]
+            return [...currentItems, {id:(Math.max(...currentItems.map( item => item.id > 0 ? item.id : 0))+1).toString(), description:newItem}]
         })
         setNewItem("")}
 
