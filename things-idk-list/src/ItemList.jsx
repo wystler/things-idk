@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import ItemAdder from "./ItemAdder.jsx"
 import ItemRemover from "./ItemRemover.jsx"
@@ -16,10 +16,17 @@ const ItemList = () => {
         localStorage.setItem("items", JSON.stringify(items))
     }, [items])
 
+    const handleOnDragEnd = (result) => {
+        const oldItems = Array.from(items);
+        const [reorderedItem] = oldItems.splice(result.source.index, 1);
+        oldItems.splice(result.destination.index, 0, reorderedItem);
+        setItems(oldItems)
+    } 
+
     return (
         <div>
             <ItemAdder setItems={setItems}/>
-                <DragDropContext>
+                <DragDropContext onDragEnd={handleOnDragEnd}>
                     <Droppable droppableId="itemList">
                         {(provided) => (
                         <ul className="itemList" {...provided.droppableProps} ref={provided.innerRef}>
@@ -34,6 +41,7 @@ const ItemList = () => {
                                 )}
                                 </Draggable>)
                             })}
+                            {provided.placeholder}
                         </ul>
                         )}
                 </Droppable>
